@@ -2,7 +2,7 @@ import axios from "axios";
 
 const API = axios.create({
   baseURL:
-    "https://stunning-orbit-7vxw7qvvqjwvcrvxp-8000.app.github.dev"
+    "https://dashboard.render.com/project/prj-d8q10h7avr4c73fulmhg"
 });
 
 export default API;
