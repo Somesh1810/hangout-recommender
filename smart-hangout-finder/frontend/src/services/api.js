@@ -2,7 +2,7 @@ import axios from "axios";
 
 const API = axios.create({
   baseURL:
-    "https://dashboard.render.com/project/prj-d8q10h7avr4c73fulmhg"
+    "https://hangout-recommender.onrender.com"
 });
 
 export default API;
