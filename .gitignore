@@ -1,1 +1,4 @@
 data/zomato.csv
+*.csv
+data/zomato.csv
+*.csv
