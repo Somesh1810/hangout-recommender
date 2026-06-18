@@ -1,24 +1,30 @@
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import L from "leaflet";
+
 import "leaflet/dist/leaflet.css";
 
+import markerIcon2x from "leaflet/dist/images/marker-icon-2x.png";
+import markerIcon from "leaflet/dist/images/marker-icon.png";
+import markerShadow from "leaflet/dist/images/marker-shadow.png";
+
+delete L.Icon.Default.prototype._getIconUrl;
+
+L.Icon.Default.mergeOptions({
+  iconRetinaUrl: markerIcon2x,
+  iconUrl: markerIcon,
+  shadowUrl: markerShadow,
+});
+
 export default function MapView({ places }) {
-  const center =
-    places.length > 0
-      ? [places[0].lat, places[0].lon]
-      : [12.9716, 77.5946];
+  if (!places.length) return null;
 
   return (
     <MapContainer
-      center={center}
+      center={[places[0].lat, places[0].lon]}
       zoom={13}
-      style={{
-        height: "500px",
-        width: "100%",
-        borderRadius: "16px",
-      }}
+      style={{ height: "500px", width: "100%" }}
     >
       <TileLayer
-        attribution="&copy; OpenStreetMap contributors"
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
 
@@ -28,13 +34,9 @@ export default function MapView({ places }) {
           position={[place.lat, place.lon]}
         >
           <Popup>
-            <strong>{place.name}</strong>
+            <b>{place.name}</b>
             <br />
-            {place.type}
-            <br />
-            Distance: {place.distance_km} km
-            <br />
-            Budget: ₹{place.budget}
+            {place.cuisine}
           </Popup>
         </Marker>
       ))}
